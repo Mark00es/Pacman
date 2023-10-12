@@ -69,23 +69,28 @@ namespace Pacman
         public void MovePacman(int direction)
         {
             // Move Pacman
-            bool CanMove = check_direction(nextDirection);
-            if (!CanMove) { CanMove = check_direction(currentDirection); direction = currentDirection; } else { direction = nextDirection; }
-            if (CanMove) { currentDirection = direction; }
-
-            if (CanMove)
+            bool CanMove = check_direction(nextDirection);  //1
+            if (!CanMove) { //2
+                CanMove = check_direction(currentDirection);
+                direction = currentDirection; //3
+            } 
+            else { direction = nextDirection; }  //4
+            if (CanMove) {  //5
+                currentDirection = direction; //6
+            }
+            if (CanMove) //7
             {
-                switch (direction)
+                switch (direction) //8
                 {
-                    case 1: PacmanImage.Top -= 16; yCoordinate--; break;
-                    case 2: PacmanImage.Left += 16; xCoordinate++; break;
-                    case 3: PacmanImage.Top += 16; yCoordinate++; break;
-                    case 4: PacmanImage.Left -= 16; xCoordinate--; break;
+                    case 1: PacmanImage.Top -= 16; yCoordinate--; break; //9
+                    case 2: PacmanImage.Left += 16; xCoordinate++; break; //10
+                    case 3: PacmanImage.Top += 16; yCoordinate++; break; //11
+                    case 4: PacmanImage.Left -= 16; xCoordinate--; break; //12
                 }
                 currentDirection = direction;
                 UpdatePacmanImage();
                 CheckPacmanPosition();
-                Form1.ghost.CheckForPacman();
+                Form1.ghost.CheckForPacman();   //13
             }
         }
 
@@ -102,9 +107,12 @@ namespace Pacman
         private void UpdatePacmanImage()
         {
             // Update Pacman image
-            PacmanImage.Image = PacmanImages.Images[((currentDirection - 1) * 4) + imageOn];
-            imageOn++;
-            if (imageOn > 3) { imageOn = 0; }
+            PacmanImage.Image = PacmanImages.Images[((currentDirection - 1) * 4) + imageOn]; //1
+            imageOn++; 
+            if (imageOn > 3) {  //2
+                imageOn = 0;    //3
+            }
+            //4
         }
 
         private bool check_direction(int direction)
@@ -123,9 +131,19 @@ namespace Pacman
         private bool direction_ok(int x, int y)
         {
             // Check if board space can be used
-            if (x < 0) { xCoordinate = 27; PacmanImage.Left = 429; return true ; }
-            if (x > 27) { xCoordinate = 0; PacmanImage.Left = -5; return true; }
-            if (Form1.gameboard.Matrix[y, x] < 4) { return true; } else { return false; }
+            if (x < 0) { 
+                xCoordinate = 27; PacmanImage.Left = 429; 
+                return true ; 
+            }
+            if (x > 27) { 
+                xCoordinate = 0; PacmanImage.Left = -5; 
+                return true; 
+            }
+            if (Form1.gameboard.Matrix[y, x] < 4) { 
+                return true; 
+            } else { 
+                return false;
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)

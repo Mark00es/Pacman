@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Pacman
 {
-    [TestFixture]
+    [TestMethod]
     public class Pacman_Test
     {
         private Pacman pacman = new Pacman();
