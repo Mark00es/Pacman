@@ -44,5 +44,44 @@ namespace Pacman
             // Check an invalid direction (should return false)
             Assert.IsFalse(pacman.check_direction(5)); // Check a direction that is not valid (should return false)
         }
+        
+        
+        [Test]
+        public void UpdatePacmanImageTest()
+        {
+            // Initialize Pacman's current direction and imageOn
+            pacman.currentDirection = 1;
+            pacman.imageOn = 0;
+
+            // Store the original image reference
+            var originalImage = pacman.PacmanImage.Image;
+
+            // Call the method to update Pacman's image
+            pacman.UpdatePacmanImage();
+
+            // Verify that the image has been updated
+            Assert.AreNotEqual(originalImage, pacman.PacmanImage.Image);
+
+            // Verify that imageOn has been incremented and reset if necessary
+            Assert.AreEqual(1, pacman.imageOn);
+
+            // Test for multiple calls to ensure image cycling
+            for (int i = 2; i < 4; i++)
+            {
+                originalImage = pacman.PacmanImage.Image;
+                pacman.currentDirection = i;
+                pacman.UpdatePacmanImage();
+                Assert.AreNotEqual(originalImage, pacman.PacmanImage.Image);
+                Assert.AreEqual(i , pacman.imageOn);
+            }
+
+            // Test for resetting imageOn when it reaches 3
+            originalImage = pacman.PacmanImage.Image;
+            pacman.currentDirection = 1;
+            pacman.imageOn = 3;
+            pacman.UpdatePacmanImage();
+            Assert.AreNotEqual(originalImage, pacman.PacmanImage.Image);
+            Assert.AreEqual(0, pacman.imageOn);
+        }
     }
 }
