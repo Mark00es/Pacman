@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Pacman
 {
-    [TestMethod]
+    [TestFixture]
     public class Pacman_Test
     {
         private Pacman pacman = new Pacman();
@@ -83,5 +83,32 @@ namespace Pacman
             Assert.AreNotEqual(originalImage, pacman.PacmanImage.Image);
             Assert.AreEqual(0, pacman.imageOn);
         }
+
+        [Test]
+        public void DirectionOkTest()
+        {
+            var form = new Form();
+            pacman.xCoordinate = 10;
+            pacman.PacmanImage = new PictureBox();
+            pacman.PacmanImage.Left = 20;
+            pacman.PacmanImage.Top= 30;
+
+            //Caso 1: x<0
+            bool result1 = pacman.direction_ok(-1, 0);
+            Assert.IsTrue(result1);
+            Assert.AreEqual(27,pacman.xCoordinate);
+            Assert.AreEqual(429, pacman.PacmanImage.Left);
+
+            //Caso 2: x>27
+            bool result2 = pacman.direction_ok(28, 0);
+            Assert.IsTrue(result2);
+            Assert.AreEqual(0, pacman.xCoordinate);
+            Assert.AreEqual(-5, pacman.PacmanImage.Left);
+
+            //Caso 3: 
+            bool result3 = pacman.direction_ok(5, 6);
+            Assert.IsTrue(result3);
+        }
+
     }
 }

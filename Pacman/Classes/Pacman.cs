@@ -23,7 +23,7 @@ namespace Pacman
         private ImageList PacmanImages = new ImageList(); 
         private Timer timer = new Timer();
 
-        private int imageOn = 0;
+        public int imageOn = 0;
 
         public Pacman()
         {
@@ -104,7 +104,7 @@ namespace Pacman
             }
         }
 
-        private void UpdatePacmanImage()
+        public void UpdatePacmanImage()
         {
             // Update Pacman image
             PacmanImage.Image = PacmanImages.Images[((currentDirection - 1) * 4) + imageOn]; //1
@@ -115,7 +115,7 @@ namespace Pacman
             //4
         }
 
-        private bool check_direction(int direction)
+        public bool check_direction(int direction)
         {
             // Check if pacman can move to space
             switch (direction)
@@ -128,7 +128,7 @@ namespace Pacman
             }
         }
 
-        private bool direction_ok(int x, int y)
+        public bool direction_ok(int x, int y)
         {
             // Check if board space can be used
             if (x < 0) { 
@@ -139,11 +139,12 @@ namespace Pacman
                 xCoordinate = 0; PacmanImage.Left = -5; 
                 return true; 
             }
-            if (Form1.gameboard.Matrix[y, x] < 4) { 
-                return true; 
-            } else { 
-                return false;
+
+            if (Form1.gameboard.Matrix[y, x] < 4)
+            {
+                return true;
             }
+            return false;
         }
 
         private void timer_Tick(object sender, EventArgs e)
