@@ -54,7 +54,10 @@ namespace Pacman
             Form1.gameboard.Matrix[x, y] = 0;
             Form1.player.UpdateScore(FoodScore);
             Amount--;
-            if (Amount < 1) { Form1.player.LevelComplete(); }
+            if (Amount < 1)
+            {
+                Form1.player.LevelComplete();
+            }
             //Form1.audio.Play(1);
         }
 
