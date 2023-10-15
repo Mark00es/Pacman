@@ -7,7 +7,7 @@ namespace Pacman
     public class Player_Test
     {
         private Player player = new Player();
-
+        private GameBoard game = new GameBoard();
         public Player_Test()
         {
             Form form = new Form();

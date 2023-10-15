@@ -69,11 +69,5 @@ namespace Pacman
             Form1.player.UpdateScore(SuperFoodScore);
             Form1.ghost.ChangeGhostState();
         }
-
-
-
-
-
-
     }
 }
