@@ -28,7 +28,7 @@ namespace Pacman
         public int[] yStart = new int[GhostAmount];
         public int[] Direction = new int[GhostAmount];
         private Random ran = new Random();
-        private bool GhostOn = false;
+        public bool GhostOn = false;
 
         public Ghost()
         {
@@ -157,7 +157,7 @@ namespace Pacman
             }
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        public void timer_Tick(object sender, EventArgs e)
         {
             // Keep moving the ghosts
             for (int x = 0; x < Ghosts; x++)
@@ -169,7 +169,7 @@ namespace Pacman
             CheckForPacman();
         }
 
-        private void killabletimer_Tick(object sender, EventArgs e)
+        public void killabletimer_Tick(object sender, EventArgs e)
         {
             // Keep moving the ghosts
             for (int x = 0; x < Ghosts; x++)
@@ -220,7 +220,7 @@ namespace Pacman
             
         }
 
-        private bool check_direction(int direction, int ghost)
+        public bool check_direction(int direction, int ghost)
         {
             // Check if ghost can move to space
             switch (direction)
@@ -241,7 +241,7 @@ namespace Pacman
             if (Form1.gameboard.Matrix[y, x] < 4 || Form1.gameboard.Matrix[y, x] > 10) { return true; } else { return false; }
         }
 
-        private void Change_Direction(int direction, int ghost)
+        public void Change_Direction(int direction, int ghost)
         {
             // Change the direction of the ghost
             int which = ran.Next(0, 2);
