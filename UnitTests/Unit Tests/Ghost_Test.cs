@@ -69,5 +69,28 @@ namespace Pacman.Test
             Assert.IsFalse(ghost.statetimer.Enabled, "statetimer should be disabled");
         }
 
+        [Test]
+        public void hometimer_Tick_Test()
+        {
+            // Arrange
+            Ghost ghost = new Ghost();
+            Form formInstance = new Form(); 
+            ghost.CreateGhostImage(formInstance);
+
+            ghost.State[0] = 2;
+
+            ghost.xCoordinate[0] = ghost.xStart[0] - 1;
+            ghost.yCoordinate[0] = ghost.yStart[0] - 1;
+            ghost.GhostImage[0].Left = ghost.xStart[0] * 16 - 3;
+            ghost.GhostImage[0].Top = ghost.yStart[0] * 16 + 43;
+
+            ghost.hometimer_Tick(null, null);
+
+            Assert.AreEqual(ghost.xStart[0], ghost.xCoordinate[0], "Ghost x-coordinate should be at its start");
+            Assert.AreEqual(ghost.yStart[0], ghost.yCoordinate[0], "Ghost y-coordinate should be at its start");
+            Assert.AreEqual(new Point(ghost.xStart[0] * 16 - 3, ghost.yStart[0] * 16 + 43), ghost.GhostImage[0].Location);
+            Assert.AreEqual(0, ghost.State[0], "Ghost state should be 0");
+        }
+
     }
 }

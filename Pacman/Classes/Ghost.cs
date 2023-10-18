@@ -132,7 +132,7 @@ namespace Pacman
             //killabletimer.Enabled = false;
         }
 
-        private void hometimer_Tick(object sender, EventArgs e)
+        public void hometimer_Tick(object sender, EventArgs e)
         {
             // Move ghosts to their home positions
             for (int x=0; x<GhostAmount; x++)
