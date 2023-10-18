@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using NUnit.Framework;
 
@@ -18,6 +19,7 @@ namespace Pacman.Test
             ghost = new Ghost();
             testForm = new Form();
         }
+
         [TearDown]
         public void TearDown()
         {
@@ -60,6 +62,7 @@ namespace Pacman.Test
             {
                 ghost.State[i] = 1;
             }
+
             ghost.statetimer_Tick(null, null);
             for (int i = 0; i < Ghost.GhostAmount; i++)
             {
@@ -84,7 +87,7 @@ namespace Pacman.Test
             ghost.xCoordinate[0] = ghost.xStart[0] + 1;
             ghost.yCoordinate[0] = ghost.yStart[0] + 1;
             ghost.GhostImage[0].Left = ghost.xStart[0] * 16 - 2; // Not at xpos yet
-            ghost.GhostImage[0].Top = ghost.yStart[0] * 16 + 44;   // Not at ypos yet
+            ghost.GhostImage[0].Top = ghost.yStart[0] * 16 + 44; // Not at ypos yet
 
             // Act
             ghost.hometimer_Tick(null, null);
@@ -172,7 +175,7 @@ namespace Pacman.Test
             ghost.xCoordinate[0] = ghost.xStart[0];
             ghost.yCoordinate[0] = ghost.yStart[0];
             ghost.GhostImage[0].Left = ghost.xStart[0] * 16 - 2; // Not at xpos yet
-            ghost.GhostImage[0].Top = ghost.yStart[0] * 16 + 44;   // Not at ypos yet
+            ghost.GhostImage[0].Top = ghost.yStart[0] * 16 + 44; // Not at ypos yet
 
             // Act
             ghost.hometimer_Tick(null, null);
@@ -189,7 +192,6 @@ namespace Pacman.Test
         [Test]
         public void Killabletimer_Tick_GhostStateEqualsOne_MoveGhosts()
         {
-            Ghost ghost = new Ghost();
             ghost.State[0] = 1;
 
             ghost.killabletimer_Tick(null, null);
@@ -198,7 +200,83 @@ namespace Pacman.Test
         }
 
 
+        [Test]
+        public void CheckDirection_Direction1_Valid()
+        {
+            ghost.xCoordinate[0] = 3;
+            ghost.yCoordinate[0] = 3;
 
+            bool result = ghost.check_direction(1, 0);
 
+            Assert.IsTrue(result, "Direction 1 should be valid");
+        }
+
+        [Test]
+        public void CheckDirection_Direction2_Valid()
+        {
+            ghost.xCoordinate[0] = 3;
+            ghost.yCoordinate[0] = 3;
+
+            bool result = ghost.check_direction(2, 0);
+
+            Assert.IsTrue(result, "Direction 2 should be valid");
+        }
+
+        [Test]
+        public void CheckDirection_Direction3_Valid()
+        {
+            ghost.xCoordinate[0] = 3;
+            ghost.yCoordinate[0] = 3;
+
+            bool result = ghost.check_direction(3, 0);
+
+            Assert.IsTrue(result, "Direction 3 should be valid");
+        }
+
+        [Test]
+        public void CheckDirection_Direction4_Valid()
+        {
+            ghost.xCoordinate[0] = 3;
+            ghost.yCoordinate[0] = 3;
+
+            bool result = ghost.check_direction(4, 0);
+
+            Assert.IsTrue(result, "Direction 4 should be valid");
+        }
+
+        [Test]
+        public void CheckDirection_InvalidDirection_ReturnsFalse()
+        {
+            ghost.xCoordinate[0] = 3;
+            ghost.yCoordinate[0] = 3;
+
+            bool result = ghost.check_direction(5, 0);
+
+            Assert.IsFalse(result, "Invalid direction should return false");
+        }
+
+        [Test]
+        public void Change_Direction_Should_Modify_Direction_Correctly()
+        {
+            int ghostDirection = 1;
+            int ghostIndex = 0;
+
+            ghost.Change_Direction(ghostDirection, ghostIndex);
+
+            int newDirection = ghost.Direction[ghostIndex];
+            Assert.AreNotEqual(ghostDirection, newDirection);
+        }
+        [Test]
+        public void Change_Direction_Should_Modify_Direction_Correctly2()
+        {
+            int ghostDirection = 2;
+            int ghostIndex = 0;
+
+            ghost.Change_Direction(ghostDirection, ghostIndex);
+
+            int newDirection = ghost.Direction[ghostIndex];
+            Assert.AreNotEqual(ghostDirection, newDirection);
+        }
+        
     }
 }
