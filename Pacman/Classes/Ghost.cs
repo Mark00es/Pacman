@@ -12,15 +12,15 @@ namespace Pacman
 {
     public class Ghost
     {
-        private const int GhostAmount = 4;
+        public const int GhostAmount = 4;
 
         public int Ghosts = GhostAmount;
-        private ImageList GhostImages = new ImageList();
+        public ImageList GhostImages = new ImageList();
         public PictureBox[] GhostImage = new PictureBox[GhostAmount];
         public int[] State = new int[GhostAmount];
         private Timer timer = new Timer();
         private Timer killabletimer = new Timer();
-        private Timer statetimer = new Timer();
+        public Timer statetimer = new Timer();
         private Timer hometimer = new Timer();
         public int[] xCoordinate = new int[GhostAmount];
         public int[] yCoordinate = new int[GhostAmount];
@@ -121,7 +121,7 @@ namespace Pacman
             }
         }
 
-        private void statetimer_Tick(object sender, EventArgs e)
+        public void statetimer_Tick(object sender, EventArgs e)
         {
             // Turn Ghosts back
             for (int x=0; x<GhostAmount; x++)

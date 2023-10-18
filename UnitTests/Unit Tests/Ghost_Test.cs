@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using NUnit.Framework;
 
@@ -49,5 +50,24 @@ namespace Pacman.Test
             Assert.AreEqual(5, ghost.xStart[0]);
             Assert.AreEqual(10, ghost.yStart[0]);
         }
+
+        [Test]
+        public void Statetimer_Tick_Test()
+        {
+            Ghost ghost = new Ghost();
+
+            for (int i = 0; i < Ghost.GhostAmount; i++)
+            {
+                ghost.State[i] = 1;
+            }
+            ghost.statetimer_Tick(null, null);
+            for (int i = 0; i < Ghost.GhostAmount; i++)
+            {
+                Assert.AreEqual(0, ghost.State[i], $"Ghost {i} state should be 0");
+            }
+
+            Assert.IsFalse(ghost.statetimer.Enabled, "statetimer should be disabled");
+        }
+
     }
 }
