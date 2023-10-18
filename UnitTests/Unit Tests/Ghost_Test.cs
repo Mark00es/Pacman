@@ -24,5 +24,17 @@ namespace Pacman.Test
             testForm.Dispose();
         }
 
+        [Test]
+        public void CreateGhostImageTest()
+        {
+            ghost.CreateGhostImage(testForm);
+            for (int i = 0; i < ghost.Ghosts; i++)
+            {
+                Assert.IsNotNull(ghost.GhostImage[i]);
+                Assert.AreEqual("GhostImage" + i, ghost.GhostImage[i].Name);
+                Assert.AreEqual(PictureBoxSizeMode.AutoSize, ghost.GhostImage[i].SizeMode);
+                Assert.AreSame(testForm, ghost.GhostImage[i].Parent);
+            }
+        }
     }
 }
