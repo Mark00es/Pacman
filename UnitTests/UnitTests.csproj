@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unit Tests\Player_Test.cs" />
     <Compile Include="Unit Tests\Food_Test.cs" />
+    <Compile Include="Unit Tests\Ghost_Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
