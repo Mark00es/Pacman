@@ -24,8 +24,8 @@ namespace Pacman
         private Timer hometimer = new Timer();
         public int[] xCoordinate = new int[GhostAmount];
         public int[] yCoordinate = new int[GhostAmount];
-        private int[] xStart = new int[GhostAmount];
-        private int[] yStart = new int[GhostAmount];
+        public int[] xStart = new int[GhostAmount];
+        public int[] yStart = new int[GhostAmount];
         public int[] Direction = new int[GhostAmount];
         private Random ran = new Random();
         private bool GhostOn = false;
