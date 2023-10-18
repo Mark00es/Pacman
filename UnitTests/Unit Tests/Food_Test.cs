@@ -34,5 +34,22 @@ namespace Pacman
             Food.EatFood(1, 1);
             Assert.AreEqual(false, Food.FoodImage[1, 1].Visible);
         }
+        [Test]
+        public void TestEatSuperFood()
+        {
+            // Arrange
+            int x = 1; // Coordenada X de la súper comida a comer (ajusta esto según tu caso)
+            int y = 2; // Coordenada Y de la súper comida a comer (ajusta esto según tu caso)
+            int initialScore = Form1.player.Score;
+            int initialMatrixValue = Form1.gameboard.Matrix[x, y];
+            bool initialFoodVisibility = Food.FoodImage[x, y].Visible;
+
+            // Act
+            Food.EatSuperFood(x, y);
+
+            // Assert
+            Assert.IsFalse(Food.FoodImage[x, y].Visible); // Asegurarse de que la comida se hace invisible
+            Assert.AreEqual(0, Form1.gameboard.Matrix[x, y]); // Asegurarse de que el valor de la matriz se actualiza a 0
+        }
     }
 }
