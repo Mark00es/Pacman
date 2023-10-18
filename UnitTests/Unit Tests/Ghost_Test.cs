@@ -186,6 +186,19 @@ namespace Pacman.Test
             Assert.AreEqual(ghost.yStart[0], ghost.yCoordinate[0], "Ghost y-coordinate should be at its start");
         }
 
+        [Test]
+        public void Killabletimer_Tick_GhostStateEqualsOne_MoveGhosts()
+        {
+            Ghost ghost = new Ghost();
+            ghost.State[0] = 1;
+
+            ghost.killabletimer_Tick(null, null);
+
+            Assert.AreEqual(1, ghost.State[0]);
+        }
+
+
+
 
     }
 }

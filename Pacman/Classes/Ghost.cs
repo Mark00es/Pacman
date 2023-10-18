@@ -28,7 +28,7 @@ namespace Pacman
         public int[] yStart = new int[GhostAmount];
         public int[] Direction = new int[GhostAmount];
         private Random ran = new Random();
-        private bool GhostOn = false;
+        public bool GhostOn = false;
 
         public Ghost()
         {
@@ -157,7 +157,7 @@ namespace Pacman
             }
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        public void timer_Tick(object sender, EventArgs e)
         {
             // Keep moving the ghosts
             for (int x = 0; x < Ghosts; x++)
@@ -169,7 +169,7 @@ namespace Pacman
             CheckForPacman();
         }
 
-        private void killabletimer_Tick(object sender, EventArgs e)
+        public void killabletimer_Tick(object sender, EventArgs e)
         {
             // Keep moving the ghosts
             for (int x = 0; x < Ghosts; x++)
