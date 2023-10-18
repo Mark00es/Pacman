@@ -36,5 +36,18 @@ namespace Pacman.Test
                 Assert.AreSame(testForm, ghost.GhostImage[i].Parent);
             }
         }
+
+        [Test]
+        public void Set_GhostsTest()
+        {
+            int[,] mockMatrix = new int[30, 27];
+            mockMatrix[10, 5] = 15;
+            Form1.gameboard.Matrix = mockMatrix;
+            ghost.Set_Ghosts();
+            Assert.AreEqual(4, ghost.xStart.Length);
+            Assert.AreEqual(4, ghost.yStart.Length);
+            Assert.AreEqual(5, ghost.xStart[0]);
+            Assert.AreEqual(10, ghost.yStart[0]);
+        }
     }
 }
